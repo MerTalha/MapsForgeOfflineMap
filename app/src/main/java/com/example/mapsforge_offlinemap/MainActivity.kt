@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
         overlayList = ItemizedIconOverlay<OverlayItem>(this, ArrayList(), null)
         
 
+
     }
 
     fun openMap(uri: Uri){

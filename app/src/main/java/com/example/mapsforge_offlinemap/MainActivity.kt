@@ -1,30 +1,20 @@
 package com.example.mapsforge_offlinemap
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.example.mapsforge_offlinemap.databinding.ActivityMainBinding
 import org.mapsforge.core.model.LatLong
-import org.mapsforge.core.util.MercatorProjection
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory
 import org.mapsforge.map.android.util.AndroidUtil
 import org.mapsforge.map.android.view.MapView
-import org.mapsforge.map.layer.overlay.Marker
 import org.mapsforge.map.layer.renderer.TileRendererLayer
 import org.mapsforge.map.reader.MapFile
 import org.mapsforge.map.rendertheme.InternalRenderTheme
-import org.osmdroid.views.overlay.ItemizedIconOverlay
-import org.osmdroid.views.overlay.OverlayItem
 import org.osmdroid.config.Configuration
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory
-import org.osmdroid.views.MapController
-import org.osmdroid.views.overlay.ItemizedOverlay
-import org.osmdroid.views.overlay.Overlay
 import java.io.FileInputStream
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,8 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var b: ActivityMainBinding;
     private lateinit var mapView: MapView
-    private lateinit var overlayList: ItemizedOverlay<OverlayItem>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         b = ActivityMainBinding.inflate(layoutInflater)
         setContentView(b.root)
         mapView = findViewById(R.id.map)
-
+        //map = findViewById(R.id.mapView)
 
         val contract = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -66,12 +54,6 @@ class MainActivity : AppCompatActivity() {
                 }
             )
         }
-
-        // Harita üzerinde marker yerleştirmek için bir marker katmanı oluştur
-        overlayList = ItemizedIconOverlay<OverlayItem>(this, ArrayList(), null)
-        
-
-
     }
 
     fun openMap(uri: Uri){
@@ -105,5 +87,4 @@ class MainActivity : AppCompatActivity() {
         b.map.setCenter(TURKEY)
         b.map.setZoomLevel(10)
     }
-
 }
